@@ -1,0 +1,4 @@
+CREATE TABLE comment (
+    commentID INT PRIMARY KEY AUTO_INCREMENT,
+    comment TEXT NOT NULL
+);
