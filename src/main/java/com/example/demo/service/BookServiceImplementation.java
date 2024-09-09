@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.BookMapper;
 import com.example.demo.dto.BookDTO;
 import com.example.demo.exception.BadRequestException;
 import com.example.demo.model.Book;
@@ -12,9 +13,11 @@ import java.util.Optional;
 @Service
 public class BookServiceImplementation implements BookService{
     private final BookRepository bookRepository;
+    private final BookMapper bookMapper;
 
-    public BookServiceImplementation(BookRepository bookRepository) {
+    public BookServiceImplementation(BookRepository bookRepository, BookMapper bookMapper) {
         this.bookRepository = bookRepository;
+        this.bookMapper = bookMapper;
     }
 
     @Override
@@ -47,20 +50,12 @@ public class BookServiceImplementation implements BookService{
     public void updateBook(Integer id, BookDTO bookDTO) {
         Optional<Book> bookFromDatabase = bookRepository.findById(id);
         if(bookFromDatabase.isPresent()){
-           Book newBook = mapDTOToBook(bookFromDatabase.get(), bookDTO);
-           bookRepository.save(newBook);
+           Book newBook = bookFromDatabase.get();
+           Book mappedBook = bookMapper.BookDTOtoBook(bookDTO);
+           mappedBook.setBookID(newBook.getBookID());
+           bookRepository.save(mappedBook);
         }else {
             throw new BadRequestException("Resource with given id doesn't exist");
         }
-    }
-
-    private Book mapDTOToBook(Book book, BookDTO bookDTO){
-        if(bookDTO.getAuthor() != null){
-            book.setAuthor(bookDTO.getAuthor());
-        }
-        if(bookDTO.getName() != null){
-            book.setName(bookDTO.getName());
-        }
-        return book;
     }
 }
