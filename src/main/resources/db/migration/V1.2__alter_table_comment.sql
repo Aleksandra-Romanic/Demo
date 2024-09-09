@@ -1,0 +1,3 @@
+ALTER TABLE comment
+ADD COLUMN book INTEGER,
+ADD FOREIGN KEY (book) REFERENCES book(bookID);
