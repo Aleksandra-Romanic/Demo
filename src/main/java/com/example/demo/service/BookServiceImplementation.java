@@ -4,6 +4,7 @@ import com.example.demo.BookMapper;
 import com.example.demo.dto.BookDTO;
 import com.example.demo.exception.BadRequestException;
 import com.example.demo.model.Book;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.BookRepository;
 
@@ -11,14 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class BookServiceImplementation implements BookService{
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
 
-    public BookServiceImplementation(BookRepository bookRepository, BookMapper bookMapper) {
-        this.bookRepository = bookRepository;
-        this.bookMapper = bookMapper;
-    }
 
     @Override
     public Book saveBook(Book book) {
