@@ -11,7 +11,7 @@ public interface BookService {
 
     List<Book> returnAll();
 
-    void deleteBook(Integer id);
+    void deleteBook(String id);
 
-    void updateBook(Integer id, BookDTO bookDTO);
+    void updateBook(String id, BookDTO bookDTO);
 }

@@ -1,21 +1,22 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "authors")
+
+
+@Document(collection = "authors")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int authorID;
+    private String authorID;
     private String name;
 }

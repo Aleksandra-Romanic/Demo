@@ -1,17 +1,14 @@
 spring:
   application:
     name: demo
-  datasource:
-    url: jdbc:mysql://localhost:3306/book
-    username: book
-    password: book
+  data:
+    mongodb:
+      url: mongodb://localhost:27017/book
+      username: book
+      password: book
+      database: book
   flyway:
     baselineOnMigrate: true
     enabled: false
-  jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
-    hibernate:
-      ddl-auto: update
-    show-sql: true
 
 

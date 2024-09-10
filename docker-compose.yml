@@ -1,14 +1,23 @@
-version: '3'
 services:
-  mysql:
-    image: mysql:8.3.0
+
+  mongo:
+    image: mongo
     ports:
-      - "3306:3306"
-    volumes:
-      - ./mysql:/docker-entrypoint-initdb.d/
-      - ./mysql-data:/var/lib/mysql
+      - 27017:27017
     environment:
-      MYSQL_PASSWORD: book
-      MYSQL_DATABASE: book
-      MYSQL_USER: book
-      MYSQL_ROOT_PASSWORD: book
+      MONGO_INITDB_ROOT_USERNAME: book
+      MONGO_INITDB_ROOT_PASSWORD: book
+      MONGO_INITDB_DATABASE: book
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    command: ["mongod", "--auth"]
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: book
+      ME_CONFIG_MONGODB_ADMINPASSWORD: book
+      ME_CONFIG_MONGODB_URL: mongodb://localhost:27017/book?authSource=admin
+      ME_CONFIG_MONGODB_SERVER: mongo

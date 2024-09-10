@@ -29,12 +29,12 @@ public class BookController {
     }
 
     @PutMapping("{id}")
-    public void updateBook(@PathVariable Integer id,@RequestBody BookDTO bookDTO){
+    public void updateBook(@PathVariable String id,@RequestBody BookDTO bookDTO){
         bookService.updateBook(id, bookDTO);
     }
 
     @DeleteMapping("{id}")
-    public void deleteBook(@PathVariable Integer id){
+    public void deleteBook(@PathVariable String id){
         bookService.deleteBook(id);
     }
 

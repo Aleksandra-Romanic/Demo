@@ -36,7 +36,7 @@ public class BookServiceImplementation implements BookService{
     }
 
     @Override
-    public void deleteBook(Integer id) {
+    public void deleteBook(String id) {
         Optional<Book> existingBook = bookRepository.findById(id);
         if(existingBook.isPresent()){
             bookRepository.deleteById(id);
@@ -47,7 +47,7 @@ public class BookServiceImplementation implements BookService{
     }
 
     @Override
-    public void updateBook(Integer id, BookDTO bookDTO) {
+    public void updateBook(String id, BookDTO bookDTO) {
         Optional<Book> bookFromDatabase = bookRepository.findById(id);
         if(bookFromDatabase.isPresent()){
            Book newBook = bookFromDatabase.get();
