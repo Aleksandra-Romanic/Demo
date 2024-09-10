@@ -7,8 +7,11 @@ spring:
     password: book
   flyway:
     baselineOnMigrate: true
+    enabled: false
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
     show-sql: true
 
 

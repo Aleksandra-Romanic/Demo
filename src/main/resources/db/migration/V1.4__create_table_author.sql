@@ -1,0 +1,3 @@
+CREATE TABLE author (
+    authorID INT PRIMARY KEY AUTO_INCREMENT,
+);
